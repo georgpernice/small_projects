@@ -1,0 +1,1 @@
+In diesem Programm kann man mit den Pfeiltasten eine Lissajous Kurve entlangfahren.
