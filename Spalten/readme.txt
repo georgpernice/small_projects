@@ -1,0 +1,2 @@
+11:59 27.09.2023
+In Engineering one of the treated methods in KIT for problem solving processes is called SPALTEN method and was developed by Prof. Albert Albers. To remember the details in the exam phase the following program outputs the information that is to be learned with time delay or as soon as you hit 'Enter'
