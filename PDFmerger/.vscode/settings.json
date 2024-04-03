@@ -1,0 +1,4 @@
+{
+    "autoDocstring.docstringFormat": "google",
+    "editor.formatOnSave": true
+}
