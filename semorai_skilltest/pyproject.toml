@@ -1,0 +1,17 @@
+[project]
+name = "semorai_skilltest"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "Georg Pernice", email = "georgpernice@gmail.com"},
+]
+dependencies = [
+    "openpyxl>=3.1.2",
+]
+requires-python = "==3.11.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
