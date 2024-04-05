@@ -30,6 +30,9 @@ class ExcelHandler:
         wb = openpyxl.Workbook()
         cell_a1 = wb.active.cell(row=1, column=1)
         cell_a1.value = title
+        for i, prod_id in enumerate(ids):
+            cell = wb.active.cell(row=i + 1, column=1)
+            cell.value = prod_id
         logfile = self.log_folder / "invalidURLs.xlsx"
         wb.save(logfile)
 
@@ -38,5 +41,8 @@ class ExcelHandler:
         wb = openpyxl.Workbook()
         cell_a1 = wb.active.cell(row=1, column=1)
         cell_a1.value = title
+        for i, prod_id in enumerate(ids):
+            cell = wb.active.cell(row=i + 1, column=1)
+            cell.value = prod_id
         logfile = self.log_folder / "noURLs.xlsx"
         wb.save(logfile)
