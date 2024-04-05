@@ -26,14 +26,14 @@ class TestExcelHandler(unittest.TestCase):
 
     def test_get_product_number(self: "TestExcelHandler"):
         """Test that method reads the product link from excel."""
-        row_a2 = 1
+        row_a2 = 2
         expected_content_a2 = 1
         cell_a2 = self.reader.get_product_id(row_a2)
         assert expected_content_a2 == cell_a2
 
     def test_get_product_url(self: "TestExcelHandler"):
         """Test that method reads the product URL from excel."""
-        row_b2 = 1
+        row_b2 = 2
         expected_content_b2 = (
             "https://www.murata.com/en-global/api/"
             + "pdfdownloadapi?cate=luCeramicCapacitorsSMD&partno=GRM319R71H224KA01#"
@@ -47,7 +47,7 @@ class TestExcelHandler(unittest.TestCase):
         Test that the excel is created.
         Test that excel cell a1 is correct."""
 
-        expected = LOG_PATH / "noURL.xlsx"
+        expected = LOG_PATH / "noURLs.xlsx"
 
         assert expected.exists()
         wb_obj = openpyxl.load_workbook(expected)
@@ -60,7 +60,7 @@ class TestExcelHandler(unittest.TestCase):
 
         Test that the excel is created.
         Test that excel contains passed product IDs."""
-        expected = LOG_PATH / "noURL.xlsx"
+        expected = LOG_PATH / "invalidURLs.xlsx"
 
         assert expected.exists()
         wb_obj = openpyxl.load_workbook(expected)

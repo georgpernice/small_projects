@@ -85,7 +85,8 @@ class TestCrawlPdf(unittest.TestCase):
         self.crawler.crawl_pdf(
             path=OUTPUT_DIR,
             product_id=1229,
-            product_url="https://www.kyocera-avx.com/products/ceramic-capacitors/surface-mount/x7r-dielectric/",
+            product_url="https://www.kyocera-avx.com/products/"
+            + "ceramic-capacitors/surface-mount/x7r-dielectric/",
         )
         assert OUTPUT_DIR / "1229-kyocera-avx.pdf" in list(OUTPUT_DIR.iterdir())
 
@@ -93,9 +94,9 @@ class TestCrawlPdf(unittest.TestCase):
 class TestExecute(unittest.TestCase):
     """Test PdfCrawler.execute method."""
 
-    @patch("PdfCrawler.crawl_pdf")
-    @patch("ExcelReader.get_product_id")
-    @patch("ExcelReader.get_product_url")
+    @patch("src.semorai_skilltest.pdf_crawler.PdfCrawler.crawl_pdf")
+    @patch("src.semorai_skilltest.excel_handler.ExcelHandler.get_product_id")
+    @patch("src.semorai_skilltest.excel_handler.ExcelHandler.get_product_url")
     def test_execute(
         self: "TestExecute",
         mock_prod_url: Mock,
