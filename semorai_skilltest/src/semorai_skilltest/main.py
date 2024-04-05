@@ -41,4 +41,4 @@ def execute(repetitions=EXCEL_LENGTH):
 
 
 if __name__ == "main":
-    execute(15)
+    execute()  # TODO pass a low number as arg if you dont have time.
