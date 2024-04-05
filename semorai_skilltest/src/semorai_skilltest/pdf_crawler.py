@@ -41,15 +41,17 @@ class PdfCrawler:
                 pdf.close()
                 print("File ", i, " downloaded")
 
-    def crawl_pdf(
-        self: "PdfCrawler", path: Path, product_number: int, product_url: str
-    ):
+    def _save_failed_urls(self, urls: list[str]):
+        """Log all failed URLs into a new excel file."""
+        pass
+
+    def crawl_pdf(self: "PdfCrawler", path: Path, product_id: int, product_url: str):
         """Save the PDF from given url into a given path.
 
         For the saved file use as a filename <product_number>-<product_company>."""
 
         pass
 
-    def save_failed_urls(self, urls: list[str]):
-        """Log all failed URLs into a new excel file."""
+    def execute(self):
+        """Crawl all pdfs. Log errors to new excels."""
         pass
