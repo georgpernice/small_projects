@@ -8,7 +8,6 @@ import pytest
 from src.semorai_skilltest.pdf_crawler import PdfCrawler
 
 OUTPUT_DIR = Path(__file__).parent / "output"
-LOG_PATH = Path(__file__).parent / "logs"
 
 
 class TestCrawlPdf(unittest.TestCase):
@@ -29,12 +28,10 @@ class TestCrawlPdf(unittest.TestCase):
 
     def setUp(self: "TestCrawlPdf") -> None:
         Path.mkdir(OUTPUT_DIR, exist_ok=False)
-        Path.mkdir(LOG_PATH, exist_ok=False)
-        self.crawler = PdfCrawler(LOG_PATH)
+        self.crawler = PdfCrawler()
 
     def tearDown(self: "TestCrawlPdf"):
         shutil.rmtree(OUTPUT_DIR)
-        shutil.rmtree(LOG_PATH)
 
     def test_crawl_pdf_no_url(self: "TestCrawlPdf"):
         """Test that method raises exception when a non URLish pattern is passed as URL."""
@@ -113,5 +110,3 @@ class TestExecute(unittest.TestCase):
         mock_crawl.assert_any_call()
         mock_prod_id.assert_any_call()
         mock_prod_url.assert_any_call()
-        assert OUTPUT_DIR / "failed.xlsx" in list(OUTPUT_DIR.iterdir())
-        assert OUTPUT_DIR / "nonexistent.xlsx" in list(OUTPUT_DIR.iterdir())

@@ -9,7 +9,7 @@ class PdfCrawler:
     execute saves all PDFs and saves failed URLs in new excel of toplevel folder.
     """
 
-    def __init__(self: "PdfCrawler", path_to_logs_folder: Path) -> None:
+    def __init__(self: "PdfCrawler") -> None:
         """Initialize crawler passing a folder for possible error logs."""
         pass
 
@@ -40,10 +40,6 @@ class PdfCrawler:
                 pdf.write(response.content)
                 pdf.close()
                 print("File ", i, " downloaded")
-
-    def _save_failed_urls(self, urls: list[str]):
-        """Log all failed URLs into a new excel file."""
-        pass
 
     def crawl_pdf(self: "PdfCrawler", path: Path, product_id: int, product_url: str):
         """Save the PDF from given url into a given path.
