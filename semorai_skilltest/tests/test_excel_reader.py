@@ -11,19 +11,19 @@ class TestExcelReader(unittest.TestCase):
     def test_get_product_number(self: "TestExcelReader"):
         """Test that method reads the product link from excel."""
         # setup
-        line_a1 = 1
+        row_a2 = 1
         expected_content_a2 = 1
         reader = ExcelReader(EXCEL_PATH)
         # test
         col_a = reader.get_product_number()
-        assert expected_content_a2 == col_a[line_a1]
+        assert expected_content_a2 == col_a[row_a2]
 
     def test_get_product_url(self: "TestExcelReader"):
         """Test that method reads the product link from excel."""
         # setup
-        line_b2 = 1
+        row_b2 = 1
         expected_content_b2 = "https://www.murata.com/en-global/api/pdfdownloadapi?cate=luCeramicCapacitorsSMD&partno=GRM319R71H224KA01#"
         reader = ExcelReader(EXCEL_PATH)
         # test
         col_b = reader.get_product_url()
-        assert expected_content_b2 == col_b[line_b2]
+        assert expected_content_b2 == col_b[row_b2]
