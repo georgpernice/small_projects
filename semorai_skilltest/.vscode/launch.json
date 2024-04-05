@@ -27,5 +27,14 @@
             ],
             "console": "integratedTerminal"
         }
+        {
+            "name": "Run main",
+            "type": "debugpy",
+            "request": "launch",
+            "python": "${command:python.interpreterPath}",
+            "module": "src.semorai_skilltest.main",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}"
+        }
     ]
 }

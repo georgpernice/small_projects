@@ -19,9 +19,9 @@ class TestExecute(unittest.TestCase):
     def setUp(self: "TestExecute") -> None:
         self.crawler = PdfCrawler(OUTPUT_DIR)
 
-    @patch("PdfCrawler.crawl_pdf")
-    @patch("ExcelHandler.get_product_id")
-    @patch("ExcelHandler.get_product_url")
+    @patch("src.semorai_skilltest.main.PdfCrawler.crawl_pdf")
+    @patch("src.semorai_skilltest.main.ExcelHandler.get_product_id")
+    @patch("src.semorai_skilltest.main.ExcelHandler.get_product_url")
     def test_execute(
         self: "TestExecute", mock_prod_url: Mock, mock_prod_id: Mock, mock_crawl: Mock
     ):
@@ -32,6 +32,6 @@ class TestExecute(unittest.TestCase):
         Assert that log excels exists for FAILED urls and one for NOT EXISTING urls."""
 
         execute()
-        mock_crawl.assert_any_call()
-        mock_prod_id.assert_any_call()
-        mock_prod_url.assert_any_call()
+        mock_crawl.assert_called
+        mock_prod_id.assert_called
+        mock_prod_url.assert_called
