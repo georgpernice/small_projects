@@ -11,7 +11,19 @@
             "python": "${command:python.interpreterPath}",
             "module": "pytest",
             "args": [
-                "tests"
+                "tests",
+                "--verbose"
+            ],
+            "console": "integratedTerminal"
+        }
+        {
+            "name": "Run Tests in Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "python": "${command:python.interpreterPath}",
+            "module": "pytest",
+            "args": [
+                "${file}"
             ],
             "console": "integratedTerminal"
         }

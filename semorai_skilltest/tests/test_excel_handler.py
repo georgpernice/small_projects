@@ -18,17 +18,17 @@ class TestExcelHandler(unittest.TestCase):
 
     def setUp(self) -> None:
         """Initialize an ExcelReader instance for later."""
-        self.reader = ExcelHandler(EXCEL_PATH, LOG_PATH)
-        LOG_PATH.mkdir(exist_ok=False)
+        self.handler = ExcelHandler(EXCEL_PATH, LOG_PATH)
+        LOG_PATH.mkdir(exist_ok=True)
 
     def tearDown(self) -> None:
-        shutil.rmtree(LOG_PATH)
+        shutil.rmtree(LOG_PATH, ignore_errors=True)
 
     def test_get_product_number(self: "TestExcelHandler"):
         """Test that method reads the product link from excel."""
         row_a2 = 2
         expected_content_a2 = 1
-        cell_a2 = self.reader.get_product_id(row_a2)
+        cell_a2 = self.handler.get_product_id(row_a2)
         assert expected_content_a2 == cell_a2
 
     def test_get_product_url(self: "TestExcelHandler"):
@@ -38,7 +38,7 @@ class TestExcelHandler(unittest.TestCase):
             "https://www.murata.com/en-global/api/"
             + "pdfdownloadapi?cate=luCeramicCapacitorsSMD&partno=GRM319R71H224KA01#"
         )
-        cell_b2 = self.reader.get_product_url(row_b2)
+        cell_b2 = self.handler.get_product_url(row_b2)
         assert expected_content_b2 == cell_b2
 
     def test_save_no_url_product_ids(self: "TestExcelHandler"):
@@ -48,7 +48,9 @@ class TestExcelHandler(unittest.TestCase):
         Test that excel cell a1 is correct."""
 
         expected = LOG_PATH / "noURLs.xlsx"
-
+        self.handler.save_no_url_product_ids(
+            [994, 9949], "Product Numbers not associated with URLs:"
+        )
         assert expected.exists()
         wb_obj = openpyxl.load_workbook(expected)
         sheet = wb_obj.active
@@ -61,7 +63,9 @@ class TestExcelHandler(unittest.TestCase):
         Test that the excel is created.
         Test that excel contains passed product IDs."""
         expected = LOG_PATH / "invalidURLs.xlsx"
-
+        self.handler.save_failed_url_product_ids(
+            [99, 999], "Product Numbers with invalid URLs:"
+        )
         assert expected.exists()
         wb_obj = openpyxl.load_workbook(expected)
         sheet = wb_obj.active
