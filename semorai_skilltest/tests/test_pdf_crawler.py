@@ -5,8 +5,7 @@ from unittest.mock import Mock, patch
 from pathlib import Path
 import shutil
 import pytest
-from semorai_skilltest.pdf_crawler import PdfCrawler
-
+from src.semorai_skilltest.pdf_crawler import PdfCrawler
 
 OUTPUT_DIR = Path(__file__).parent / "output"
 LOG_PATH = Path(__file__).parent / "logs"
@@ -65,7 +64,7 @@ class TestCrawlPdf(unittest.TestCase):
                 product_url="https://www.kyocera-avx.com/products/",  # manually made URL containing no PDF links
             )
         # assert empty output dir
-        assert not OUTPUT_DIR.iterdir()
+        assert not list(OUTPUT_DIR.iterdir())
 
     def test_crawl_pdf_direct_valid_url(self: "TestCrawlPdf"):
         """Test that method downloads a new PDF into output folder.
@@ -78,7 +77,7 @@ class TestCrawlPdf(unittest.TestCase):
             product_url="https://www.vishay.com/docs/45199/vjcommercialseries.pdf",
         )
         # assert that downloaded pdf exists with correct name in output directory.
-        assert OUTPUT_DIR / "2-vishay.pdf" in OUTPUT_DIR.iterdir()
+        assert OUTPUT_DIR / "2-vishay.pdf" in list(OUTPUT_DIR.iterdir())
 
     def test_crawl_pdf_indirect_valid_url(self: "TestCrawlPdf"):
         """Test that method downloads a PDF to folder with correct naming when link is accessible.
@@ -91,7 +90,7 @@ class TestCrawlPdf(unittest.TestCase):
             product_id=1229,
             product_url="https://www.kyocera-avx.com/products/ceramic-capacitors/surface-mount/x7r-dielectric/",
         )
-        assert OUTPUT_DIR / "1229-kyocera-avx.pdf" in OUTPUT_DIR.iterdir()
+        assert OUTPUT_DIR / "1229-kyocera-avx.pdf" in list(OUTPUT_DIR.iterdir())
 
 
 class TestExecute(unittest.TestCase):
@@ -114,5 +113,5 @@ class TestExecute(unittest.TestCase):
         mock_crawl.assert_any_call()
         mock_prod_id.assert_any_call()
         mock_prod_url.assert_any_call()
-        assert OUTPUT_DIR / "failed.xlsx" in OUTPUT_DIR.iterdir()
-        assert OUTPUT_DIR / "nonexistent.xlsx" in OUTPUT_DIR.iterdir()
+        assert OUTPUT_DIR / "failed.xlsx" in list(OUTPUT_DIR.iterdir())
+        assert OUTPUT_DIR / "nonexistent.xlsx" in list(OUTPUT_DIR.iterdir())

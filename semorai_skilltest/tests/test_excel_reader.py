@@ -2,7 +2,7 @@
 
 import unittest
 from pathlib import Path
-from semorai_skilltest.excel_reader import ExcelReader
+from src.semorai_skilltest.excel_reader import ExcelReader
 
 EXCEL_PATH = Path(__file__).parent / "resources" / "Test_data.xlsx"
 
@@ -24,9 +24,10 @@ class TestExcelReader(unittest.TestCase):
         """Test that method reads the product URL from excel."""
         # setup
         row_b2 = 1
-        expected_content_b2 = """
-        https://www.murata.com/en-global/api/pdfdownloadapi?cate=luCeramicCapacitorsSMD&partno=GRM319R71H224KA01#
-        """
+        expected_content_b2 = (
+            "https://www.murata.com/en-global/api/"
+            + "pdfdownloadapi?cate=luCeramicCapacitorsSMD&partno=GRM319R71H224KA01#"
+        )
         reader = ExcelReader(EXCEL_PATH)
         # test
         cell_b2 = reader.get_product_url(row_b2)
