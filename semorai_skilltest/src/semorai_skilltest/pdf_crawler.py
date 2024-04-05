@@ -1,3 +1,5 @@
+"""Definition of PdfCrawler class."""
+
 from pathlib import Path
 import requests
 from bs4 import BeautifulSoup
@@ -16,7 +18,9 @@ class PdfCrawler:
 
     def url_to_company_name(self, url: str):
         """Fishing out the company name from url with regex."""
-        company_name = re.search(r"https?:\/\/(?:www\.)?([^.\/]+)", url)[1]
+        company_name = re.search(r"https?:\/\/(?:www\.)?([^.\/]+)", url)[
+            1
+        ]  # TODO regex needs to be improved.
         return company_name
 
     def _crawl_pdfs_from_website(

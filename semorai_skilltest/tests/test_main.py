@@ -31,7 +31,7 @@ class TestExecute(unittest.TestCase):
         Assert that it calls save_failed_urls once.
         Assert that log excels exists for FAILED urls and one for NOT EXISTING urls."""
 
-        execute()
+        execute(3)
         mock_crawl.assert_called
         mock_prod_id.assert_called
         mock_prod_url.assert_called

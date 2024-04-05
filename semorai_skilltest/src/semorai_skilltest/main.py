@@ -1,23 +1,26 @@
 """Execute the the PDF crawling process."""
 
 from pathlib import Path
+import requests
 from src.semorai_skilltest.pdf_crawler import PdfCrawler
 from src.semorai_skilltest.excel_handler import ExcelHandler
-import requests
+
 
 PATH_TO_EXCEL = Path("C:\\Users\\ThinkCenter\\Desktop\\skilltest\\Test_data.xlsx")
 PATH_TO_LOG_FOLDER = PATH_TO_EXCEL.parent / "logs"
 PATH_TO_OUTPUT_FOLDER = PATH_TO_EXCEL.parent / "output"
-EXCEL_LENGTH = 22  # TODO replace with 2591  # sadly no time for a get function
-crawler = PdfCrawler(PATH_TO_EXCEL.parent)
+PATH_TO_OUTPUT_FOLDER.mkdir(parents=True)
+
+EXCEL_LENGTH = 2591  # sadly no time for a get function
+crawler = PdfCrawler(PATH_TO_OUTPUT_FOLDER)
 handler = ExcelHandler(PATH_TO_EXCEL, PATH_TO_LOG_FOLDER)
 
 
-def execute():
+def execute(repetitions=EXCEL_LENGTH):
     """Crawl all pdfs. Log errors to new excels."""
     not_url_ids = []
     failed_url_ids = []
-    for row in range(1, EXCEL_LENGTH + 1):
+    for row in range(1, repetitions + 1):
         prod_id = row  # turns out the cells containing numbers are really not hardcoded
         # so just using the row as product_id is faster that resolving stuff like A44+1
         url = handler.get_product_url(row)
@@ -38,5 +41,4 @@ def execute():
 
 
 if __name__ == "main":
-    execute()
-execute()
+    execute(15)
