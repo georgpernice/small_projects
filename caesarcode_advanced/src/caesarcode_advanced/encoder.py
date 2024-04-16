@@ -2,6 +2,8 @@
 
 
 class Encoder:
+    """A class for encoding."""
+
     def __init__(self, permutation_circles=list[str]):
         """The constructor takes a variable number of strings as argument.
         For example the string 'aeiou' means that
